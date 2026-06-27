@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="You are warmly invited to the royal Indian wedding celebration of Aarya and Vihaan. View wedding events, venue details, gallery, and RSVP online.">
+  <meta name="keywords" content="royal Indian wedding invitation, luxury wedding invitation, Aarya Vihaan wedding, wedding RSVP, Indian wedding website">
+  <meta name="author" content="Aarya & Vihaan Families">
+  <meta name="theme-color" content="#7a1020">
+  <meta property="og:title" content="Aarya & Vihaan | Royal Wedding Invitation">
+  <meta property="og:description" content="Join us for a celebration of love, tradition, and togetherness.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/couple-hero.jpg">
+  <meta property="og:url" content="https://example.com">
+  <title>Aarya & Vihaan | Royal Wedding Invitation</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js" defer></script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "Aarya and Vihaan Wedding",
+      "description": "A royal Indian wedding celebration with family, friends, music, rituals, and reception.",
+      "startDate": "2026-12-12T18:00:00+05:30",
+      "endDate": "2026-12-13T23:30:00+05:30",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "image": ["assets/images/couple-hero.jpg"],
+      "location": {
+        "@type": "Place",
+        "name": "The Leela Palace, Udaipur",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Lake Pichola",
+          "addressLocality": "Udaipur",
+          "addressRegion": "Rajasthan",
+          "postalCode": "313001",
+          "addressCountry": "IN"
+        }
+      },
+      "organizer": {
+        "@type": "Person",
+        "name": "Aarya & Vihaan Families"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="loader" id="loader" aria-live="polite" aria-label="Wedding invitation loading">
+    <div class="loader__mandala" aria-hidden="true"></div>
+    <p class="loader__text">Preparing your royal invitation</p>
+  </div>
+
+  <div class="ambient" aria-hidden="true">
+    <video class="ambient__video" autoplay muted loop playsinline poster="assets/images/video-poster.jpg">
+      <source src="assets/video/wedding-bg.mp4" type="video/mp4">
+    </video>
+    <div class="ambient__blur"></div>
+    <div class="moon"></div>
+    <div class="clouds clouds--back"></div>
+    <div class="clouds clouds--front"></div>
+    <div class="stars"></div>
+    <div class="particles"></div>
+    <div class="petals"></div>
+    <div class="hearts"></div>
+  </div>
+
+  <canvas class="celebration-canvas" id="celebrationCanvas" aria-hidden="true"></canvas>
+
+  <audio id="weddingMusic" preload="auto" loop>
+    <source src="assets/music/instrumental-wedding.mp3" type="audio/mpeg">
+  </audio>
+
+  <button class="music-toggle" id="musicToggle" type="button" aria-label="Toggle wedding music" aria-pressed="false">
+    <span class="music-toggle__icon" aria-hidden="true">&#9834;</span>
+  </button>
+
+  <header class="site-header" id="top">
+    <nav class="nav glass-panel" aria-label="Primary navigation">
+      <a class="nav__brand" href="#top" aria-label="Aarya and Vihaan wedding home">A & V</a>
+      <button class="nav__toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#invitation">Invitation</a></li>
+        <li><a href="#story">Story</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#families">Families</a></li>
+        <li><a href="#venue">Venue</a></li>
+        <li><a href="#rsvp">RSVP</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero section" id="invitation" aria-labelledby="heroTitle">
+      <div class="floral-corner floral-corner--top-left" aria-hidden="true"></div>
+      <div class="floral-corner floral-corner--top-right" aria-hidden="true"></div>
+      <div class="hero__content glass-panel reveal">
+        <p class="eyebrow">Together with their families</p>
+        <h1 id="heroTitle">
+          <span class="couple-name heartbeat">Aarya</span>
+          <span class="ampersand">&</span>
+          <span class="couple-name heartbeat">Vihaan</span>
+        </h1>
+        <p class="hero__date">12 December 2026 &middot; Udaipur, Rajasthan</p>
+
+        <div class="rings" aria-hidden="true">
+          <span class="ring ring--one"></span>
+          <span class="ring ring--two"></span>
+        </div>
+
+        <div class="invitation-envelope" id="invitationEnvelope" aria-hidden="true">
+          <div class="envelope__back"></div>
+          <div class="envelope__paper">
+            <p>With love and blessings</p>
+          </div>
+          <div class="envelope__flap"></div>
+          <div class="envelope__front"></div>
+        </div>
+
+        <button class="button button--primary" id="openInvitation" type="button">
+          Open Invitation
+        </button>
+      </div>
+      <div class="floral-corner floral-corner--bottom-left" aria-hidden="true"></div>
+      <div class="floral-corner floral-corner--bottom-right" aria-hidden="true"></div>
+    </section>
+
+    <section class="paper-section section" id="blessing" aria-labelledby="blessingTitle">
+      <div class="paper-unfold glass-panel reveal">
+        <p class="eyebrow">A Sacred Beginning</p>
+        <h2 id="blessingTitle">You Are Cordially Invited</h2>
+        <p>
+          By the grace of the Almighty and with the blessings of our elders, we invite you to celebrate the wedding of our beloved
+          Aarya and Vihaan. Your presence will make this royal celebration complete.
+        </p>
+      </div>
+    </section>
+
+    <section class="countdown section" aria-labelledby="countdownTitle">
+      <div class="section-heading reveal">
+        <p class="eyebrow">The Celebration Begins In</p>
+        <h2 id="countdownTitle">Counting Every Heartbeat</h2>
+      </div>
+      <div class="countdown__grid reveal" id="countdownTimer" data-wedding-date="2026-12-12T18:00:00+05:30">
+        <article class="countdown-card glass-panel">
+          <strong id="days">00</strong>
+          <span>Days</span>
+        </article>
+        <article class="countdown-card glass-panel">
+          <strong id="hours">00</strong>
+          <span>Hours</span>
+        </article>
+        <article class="countdown-card glass-panel">
+          <strong id="minutes">00</strong>
+          <span>Minutes</span>
+        </article>
+        <article class="countdown-card glass-panel">
+          <strong id="seconds">00</strong>
+          <span>Seconds</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="gallery section" id="gallery" aria-labelledby="galleryTitle">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Moments in Gold</p>
+        <h2 id="galleryTitle">Couple Gallery</h2>
+      </div>
+      <div class="gallery__stage glass-panel reveal" aria-live="polite">
+        <button class="gallery__control gallery__control--prev" type="button" id="galleryPrev" aria-label="Show previous photo">&lsaquo;</button>
+        <div class="gallery__slides" id="gallerySlides">
+          <figure class="gallery__slide is-active">
+            <img src="assets/images/couple-01.jpg" alt="Aarya and Vihaan smiling during their engagement portrait session" loading="lazy">
+            <figcaption>Engagement glow</figcaption>
+          </figure>
+          <figure class="gallery__slide">
+            <img src="assets/images/couple-02.jpg" alt="Aarya and Vihaan standing beside palace arches" loading="lazy">
+            <figcaption>Palace promises</figcaption>
+          </figure>
+          <figure class="gallery__slide">
+            <img src="assets/images/couple-03.jpg" alt="Close portrait of the couple in traditional Indian attire" loading="lazy">
+            <figcaption>Forever begins</figcaption>
+          </figure>
+        </div>
+        <button class="gallery__control gallery__control--next" type="button" id="galleryNext" aria-label="Show next photo">&rsaquo;</button>
+      </div>
+    </section>
+
+    <section class="story section" id="story" aria-labelledby="storyTitle">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Our Story</p>
+        <h2 id="storyTitle">Written Under Moonlight</h2>
+      </div>
+      <div class="story__grid">
+        <article class="story-card glass-panel reveal">
+          <span class="story-card__year">2021</span>
+          <h3>First Meeting</h3>
+          <p>A chance introduction at a family celebration became a conversation neither of them wanted to end.</p>
+        </article>
+        <article class="story-card glass-panel reveal">
+          <span class="story-card__year">2023</span>
+          <h3>The Promise</h3>
+          <p>Across festivals, travels, and quiet evenings, friendship unfolded into a promise of lifelong companionship.</p>
+        </article>
+        <article class="story-card glass-panel reveal">
+          <span class="story-card__year">2026</span>
+          <h3>The Wedding</h3>
+          <p>With blessings from both families, they begin a new chapter surrounded by the people they love most.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="events section" id="events" aria-labelledby="eventsTitle">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Wedding Timeline</p>
+        <h2 id="eventsTitle">Rituals & Celebrations</h2>
+      </div>
+      <ol class="timeline">
+        <li class="timeline__item glass-panel reveal">
+          <time datetime="2026-12-11T17:00:00+05:30">11 Dec &middot; 5:00 PM</time>
+          <h3>Mehendi</h3>
+          <p>An evening of henna, folk songs, and fragrant marigolds.</p>
+        </li>
+        <li class="timeline__item glass-panel reveal">
+          <time datetime="2026-12-11T20:00:00+05:30">11 Dec &middot; 8:00 PM</time>
+          <h3>Sangeet</h3>
+          <p>Music, dance, and joyful performances by both families.</p>
+        </li>
+        <li class="timeline__item glass-panel reveal">
+          <time datetime="2026-12-12T18:00:00+05:30">12 Dec &middot; 6:00 PM</time>
+          <h3>Wedding Ceremony</h3>
+          <p>The sacred pheras and vows beneath a royal mandap.</p>
+        </li>
+        <li class="timeline__item glass-panel reveal">
+          <time datetime="2026-12-13T19:30:00+05:30">13 Dec &middot; 7:30 PM</time>
+          <h3>Reception</h3>
+          <p>A formal dinner reception with blessings, toasts, and celebration.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="families section" id="families" aria-labelledby="familiesTitle">
+      <div class="section-heading reveal">
+        <p class="eyebrow">With Blessings From</p>
+        <h2 id="familiesTitle">Our Families</h2>
+      </div>
+      <div class="families__grid">
+        <article class="family-card glass-panel reveal">
+          <img src="assets/images/bride-family.jpg" alt="Bride family portrait" loading="lazy">
+          <h3>Bride's Family</h3>
+          <p>Mr. Rajendra Sharma & Mrs. Meera Sharma request your gracious presence as their daughter begins this beautiful journey.</p>
+        </article>
+        <article class="family-card glass-panel reveal">
+          <img src="assets/images/groom-family.jpg" alt="Groom family portrait" loading="lazy">
+          <h3>Groom's Family</h3>
+          <p>Mr. Arvind Rathore & Mrs. Kavita Rathore joyfully invite you to bless their son and daughter-in-law.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="schedule section" aria-labelledby="scheduleTitle">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Plan Your Celebration</p>
+        <h2 id="scheduleTitle">Wedding Schedule</h2>
+      </div>
+      <div class="schedule__grid">
+        <article class="schedule-card glass-panel reveal">
+          <span class="schedule-card__icon schedule-card__icon--moon" aria-hidden="true"></span>
+          <h3>Welcome Dinner</h3>
+          <p>10 Dec &middot; 8:00 PM</p>
+          <address>Royal Courtyard, The Leela Palace</address>
+        </article>
+        <article class="schedule-card glass-panel reveal">
+          <span class="schedule-card__icon schedule-card__icon--spark" aria-hidden="true"></span>
+          <h3>Haldi</h3>
+          <p>12 Dec &middot; 10:00 AM</p>
+          <address>Lotus Garden Pavilion</address>
+        </article>
+        <article class="schedule-card glass-panel reveal">
+          <span class="schedule-card__icon schedule-card__icon--heart" aria-hidden="true"></span>
+          <h3>Vidaai</h3>
+          <p>13 Dec &middot; 10:30 AM</p>
+          <address>Palace Promenade</address>
+        </article>
+      </div>
+    </section>
+
+    <section class="venue section" id="venue" aria-labelledby="venueTitle">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Royal Destination</p>
+        <h2 id="venueTitle">The Leela Palace, Udaipur</h2>
+      </div>
+      <div class="venue__layout">
+        <article class="venue__details glass-panel reveal">
+          <h3>Join Us by Lake Pichola</h3>
+          <p>Lake Pichola, Udaipur, Rajasthan 313001, India</p>
+          <p>Guests are requested to arrive 30 minutes before each ceremony.</p>
+          <a class="button button--secondary" href="https://www.google.com/maps/search/?api=1&query=The+Leela+Palace+Udaipur" target="_blank" rel="noopener noreferrer">Get Directions</a>
+          <figure class="qr-card">
+            <img src="assets/images/navigation-qr.png" alt="QR code for wedding venue navigation" loading="lazy">
+            <figcaption>Scan for navigation</figcaption>
+          </figure>
+        </article>
+        <div class="map glass-panel reveal" title="Map showing The Leela Palace Udaipur">
+          <iframe
+            src="https://www.google.com/maps?q=The%20Leela%20Palace%20Udaipur&output=embed"
+            width="600"
+            height="450"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Google Map to The Leela Palace Udaipur"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="rsvp section" id="rsvp" aria-labelledby="rsvpTitle">
+      <div class="section-heading reveal">
+        <p class="eyebrow">Grace Us With Your Presence</p>
+        <h2 id="rsvpTitle">RSVP</h2>
+      </div>
+      <form class="rsvp-form glass-panel reveal" id="rsvpForm" novalidate>
+        <div class="form-group">
+          <label for="guestName">Full Name</label>
+          <input type="text" id="guestName" name="guestName" autocomplete="name" required minlength="2" placeholder="Your full name">
+          <small class="form-error" id="guestNameError"></small>
+        </div>
+        <div class="form-group">
+          <label for="guestEmail">Email Address</label>
+          <input type="email" id="guestEmail" name="guestEmail" autocomplete="email" required placeholder="you@example.com">
+          <small class="form-error" id="guestEmailError"></small>
+        </div>
+        <div class="form-group">
+          <label for="guestPhone">Phone Number</label>
+          <input type="tel" id="guestPhone" name="guestPhone" autocomplete="tel" required placeholder="+91 98765 43210">
+          <small class="form-error" id="guestPhoneError"></small>
+        </div>
+        <div class="form-group">
+          <label for="attendance">Will you attend?</label>
+          <select id="attendance" name="attendance" required>
+            <option value="">Select an option</option>
+            <option value="yes">Joyfully attending</option>
+            <option value="maybe">Trying my best</option>
+            <option value="no">Unable to attend</option>
+          </select>
+          <small class="form-error" id="attendanceError"></small>
+        </div>
+        <div class="form-group">
+          <label for="guestCount">Number of Guests</label>
+          <input type="number" id="guestCount" name="guestCount" min="1" max="8" value="1" required>
+          <small class="form-error" id="guestCountError"></small>
+        </div>
+        <div class="form-group form-group--wide">
+          <label for="message">Blessings or Message</label>
+          <textarea id="message" name="message" rows="4" placeholder="Share your blessings for the couple"></textarea>
+        </div>
+        <button class="button button--primary" type="submit">Send RSVP</button>
+        <p class="form-success" id="formSuccess" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer glass-panel">
+    <p>Aarya &amp; Vihaan &middot; 12 December 2026</p>
+    <ul class="social-links" aria-label="Social media links">
+      <li>
+        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+            <circle cx="12" cy="12" r="4"></circle>
+            <circle cx="17.5" cy="6.5" r="1"></circle>
+          </svg>
+          <span>Instagram</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M14 8h3V4h-3c-3 0-5 2-5 5v3H6v4h3v4h4v-4h3l1-4h-4V9c0-.6.4-1 1-1Z"></path>
+          </svg>
+          <span>Facebook</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <rect x="3" y="6" width="18" height="12" rx="4"></rect>
+            <path d="m10 9 6 3-6 3Z"></path>
+          </svg>
+          <span>YouTube</span>
+        </a>
+      </li>
+    </ul>
+    <a class="footer__top" href="#top">Back to top</a>
+  </footer>
+</body>
+</html>
